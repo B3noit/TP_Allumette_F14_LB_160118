@@ -1,0 +1,85 @@
+ALGO : Jeux_Des_Allumettes_JvsJ 
+
+
+//BUT : Jeux d'allumette où l'on retire des allumettes les unes après les autres, il ne faut absolument pas retirer la dèrnière allumette pour gagner.
+
+//Principe : On a la valeur initiale du tas d'allumette(21), puis dans une boucle répéter à tour de rôle les deux joueurs vont soustraire 1,2 ou 3 allumettes.
+
+//ENTREES : le nombre d'allumettes à soustraire.
+
+//SORTIES : Le nombre d'allumettes restantes et le détenteurs de la victoire.
+
+
+
+CONST
+perdu <- 0 
+joueur1 <- 1
+joueur2 <- 2
+
+
+VAR 
+
+
+PROCEDURE ALLUMETTE
+
+VAR 
+nballumette,soustraction,numero : ENTIER
+
+DEBUT
+	
+nballumette <- 21
+soustraction <- 0
+numero <-1
+ 
+	ECRIRE "Les règles : il y a 21 allumettes,on peut en retirer 1,2 ou 3 à chaque tour, pour gagner il ne faut pas prendre la dernière allumette !"
+
+	REPETER
+		ECRIRE "Joueur" & numero & ", il reste " & nballumette & " allumettes, combien d'allumettes souhaitez vous retirez ?"
+		LIRE soustraction
+		VERIFICATION (soustraction) // procédure de vérification
+		nballumette <- nballumette - soustraction
+		SI (numero = joueur1) ALORS
+			numero <--joueur2
+		SINON numero <- joueur1
+		FINSI
+
+
+	JUSQU'A (nballumette <= perdu)
+SI (numero = joueur1) ALORS
+	ECRIRE "Joueur1 a perdu, Joueur2 l'emporte.
+SINON ECRIRE "Joueur2 a perdu, Joueur1 l'emporte."
+
+FIN PROCEDURE
+
+
+
+
+PROCEDURE VERIFICATION (verif : ENTIER)
+
+
+DEBUT
+
+TANTQUE (verif < 1 OU verif > 3) FAIRE
+ECRIRE verif & " n'est pas un nombre valable, vous pouvez retirer soit 1,2 ou 3 allumettes. Recommencez."
+LIRE verif
+FINTANTQUE
+
+FIN PROCEDURE
+
+
+DEBUT 
+
+ALLUMETTE
+
+FIN
+
+
+
+
+
+
+
+
+
+
+
